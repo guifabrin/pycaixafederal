@@ -1,19 +1,20 @@
-"""This module do web crawler of banco do brasil."""
-__version__ = "0.0.2"
+"""This module do web crawler of caixa federal."""
+__version__ = "0.0.4"
 
-import os
 import time
-import zipfile
 from datetime import datetime
 
 import requests
 import wget
+import zipfile
+import os
+
 from jsmin import jsmin
-from selenium.webdriver.chrome import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium import webdriver
 
 now = datetime.now()
 
@@ -24,15 +25,15 @@ with open(os.path.dirname(__file__) + '/script.js') as js_file:
 def __login(driver, usuario, senha):
     driver.get("https://internetbanking.caixa.gov.br/sinbc/#!nb/login")
     time.sleep(3)
-    WebDriverWait(driver, 5).until(expected_conditions.presence_of_element_located((By.ID, "nomeUsuario")))
+    WebDriverWait(driver, 15).until(expected_conditions.presence_of_element_located((By.ID, "nomeUsuario")))
     driver.find_element(By.ID, "nomeUsuario").send_keys(usuario)
     driver.find_element(By.ID, "btnLogin").click()
     time.sleep(3)
-    WebDriverWait(driver, 5).until(
+    WebDriverWait(driver, 15).until(
         expected_conditions.visibility_of_element_located((By.ID, "lnkInitials")))
     driver.find_element(By.ID, "lnkInitials").click()
     time.sleep(3)
-    WebDriverWait(driver, 5).until(
+    WebDriverWait(driver, 15).until(
         expected_conditions.visibility_of_element_located((By.ID, "password")))
     driver.execute_script("document.querySelector(\'#password\').value=\'" + senha.replace('\n', '') + "\'")
     driver.find_element(By.ID, "btnConfirmar").click()
