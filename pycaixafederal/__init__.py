@@ -1,5 +1,5 @@
 """This module do web crawler of banco do brasil."""
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 
 import os
 import time
@@ -17,7 +17,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 now = datetime.now()
 
-with open(os.path.dirname(__file__) + '/banco_caixa.js') as js_file:
+with open(os.path.dirname(__file__) + '/script.js') as js_file:
     minified = jsmin(js_file.read())
 
 
