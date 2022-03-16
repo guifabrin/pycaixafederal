@@ -1,4 +1,4 @@
-setuptools==60.5.0
+setuptools==60.10.0
 requests==2.27.1
 wget==3.2
 jsmin==3.0.1
